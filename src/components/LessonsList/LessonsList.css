@@ -1,0 +1,39 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #3498db;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+tr:hover {
+  background: #f0f0f0;
+}
+
+td img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+td video {
+  max-width: 300px;
+  border-radius: 8px;
+}

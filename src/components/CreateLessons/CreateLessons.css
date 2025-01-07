@@ -1,0 +1,97 @@
+form {
+  background: #f9f9f9;
+  padding: 37px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  border-color: #3498db;
+}
+
+textarea {
+  resize: none;
+  margin-top: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin: 3px;
+  text-align: left;
+}
+
+button[type="submit"] {
+  background: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #219150;
+}
+
+p {
+  text-align: center;
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+.custom-file-input {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 113px;
+}
+
+.custom-file-input label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-input label:hover {
+  background-color: #0056b3;
+}
+
+.custom-file-input label:active {
+  background-color: #003d7a;
+}
+
+.file-input-label {
+  margin-right: 15px;
+}
