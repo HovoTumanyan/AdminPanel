@@ -6,7 +6,7 @@ export default function LessonsList({ lessons, handleDeleteLesson }) {
       <thead>
         <tr>
           <th>№</th>
-          <th>Название урока</th>
+          <th>Название</th>
           <th>Видео</th>
           <th>Фото</th>
           <th>Домашнее задание</th>
@@ -14,24 +14,28 @@ export default function LessonsList({ lessons, handleDeleteLesson }) {
         </tr>
       </thead>
       <tbody>
+        {/* Перебираем массив уроков для создания строк таблицы */}
         {lessons.map((lesson, index) => (
           <tr key={lesson.id}>
-            <td style={{ padding: "10px" }}>{index + 1}</td>
-            <td style={{ padding: "10px" }}>{lesson.title}</td>
-            <td style={{ padding: "10px" }}>
-              <video width="100px" controls>
+            <td>{index + 1}</td>
+            <td>{lesson.title}</td>
+            {/* Видео урока */}
+            <td>
+              <video controls>
                 <source src={lesson.video} type="video/mp4" />
                 Ваш браузер не поддерживает видео.
               </video>
             </td>
+            {/* Фото урока */}
             <td>
               <img src={lesson.photo} alt="Фото урока" />
             </td>
             <td>{lesson.homework}</td>
+            {/* Удаление урока */}
             <td style={{ padding: "10px" }}>
               <span
                 title="Удалить урок"
-                onClick={() => handleDeleteLesson(lesson.id)}
+                onClick={() => handleDeleteLesson(lesson.id)} 
                 style={{
                   color: "red",
                   fontWeight: "bold",
@@ -47,6 +51,7 @@ export default function LessonsList({ lessons, handleDeleteLesson }) {
       </tbody>
     </table>
   ) : (
+    
     <p>Уроки пока не добавлены.</p>
   );
 }

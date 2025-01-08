@@ -2,8 +2,7 @@ import "./CreateLessons.css";
 
 export default function CreateLessons({
   onSubmit,
-  videoPreview,
-  photoPreview,
+  previews,
   handleFileChange,
   register,
   handleSubmit,
@@ -25,49 +24,59 @@ export default function CreateLessons({
         )}
       </div>
 
+      {/* Поле для загрузки видео */}
       <div className="custom-file-input">
         <label className="file-input-label">
           Видео урока
           <input
             type="file"
             {...register("video", { required: "*" })}
-            accept="video/*"
-            onChange={handleFileChange}
+            accept="video/*" // Ограничение типов файлов (только видео)
+            onChange={handleFileChange} // Обработчик для отображения превью
           />
         </label>
+
         {errors.video && (
           <p className="error-message">{errors.video.message}</p>
         )}
-        {videoPreview && (
-          <div>
-            <video width="100%" controls>
-              <source src={videoPreview} type="video/mp4" />
-              Ваш браузер не поддерживает видео.
-            </video>
-          </div>
-        )}
       </div>
 
+      {/* Поле для загрузки фото */}
       <div className="custom-file-input">
         <label>
           Фото урока
           <input
             type="file"
             {...register("photo", { required: "*" })}
-            accept="image/*"
-            onChange={handleFileChange}
+            accept="image/*" 
+            onChange={handleFileChange} 
           />
         </label>
         {errors.photo && (
           <p className="error-message">{errors.photo.message}</p>
         )}
-        {photoPreview && (
-          <div>
-            <img src={photoPreview} alt="Preview" />
+      </div>
+
+      {/* Контейнер для превью загруженных файлов */}
+      <div className="preview-container">
+        {/* Превью для загруженного видео */}
+        {previews.video && (
+          <div className="video-preview">
+            <video width="100%" controls>
+              <source src={previews.video} type="video/mp4" />
+              Ваш браузер не поддерживает видео.
+            </video>
+          </div>
+        )}
+        {/* Превью для загруженного фото */}
+        {previews.photo && (
+          <div className="photo-preview">
+            <img src={previews.photo} alt="Preview" />
           </div>
         )}
       </div>
 
+      {/* Поле для ввода домашнего задания */}
       <div>
         <label>
           Домашнее задание:
@@ -76,6 +85,7 @@ export default function CreateLessons({
             placeholder="Введите домашнее задание"
           ></textarea>
         </label>
+
         {errors.homework && (
           <p className="error-message">{errors.homework.message}</p>
         )}

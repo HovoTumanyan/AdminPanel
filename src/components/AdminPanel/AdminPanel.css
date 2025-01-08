@@ -1,42 +1,40 @@
 .admin-panel {
   font-family: "Arial", sans-serif;
-  max-width: 1200px;
   margin: 0 auto;
-  color: #333;
+  color: #ffffff;
   line-height: 1.6;
   background-color: #e5e5e5;
   border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background-color: #333a44;
 }
 
-h1,
-h2 {
-  color: #2c3e50;
+:is(h1, h2) {
+  color: #ffffff;
   text-align: center;
   margin-bottom: 20px;
 }
 
 button {
-  background: #3498db;
+  background-color: transparent;
   color: white;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #71d6ec7a;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   margin-bottom: 20px;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-  background: #2980b9;
+  background: #23272f;
 }
 
-video,
-img {
-  max-width: 100%;
+:is(video, img) {
+  width: 100%;
   border-radius: 5px;
   margin-top: 10px;
-  width: 50%;
+  height: 200px;
+  object-fit: cover;
 }

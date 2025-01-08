@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import { LessonsProvider } from "./contexts/LessonsContext";

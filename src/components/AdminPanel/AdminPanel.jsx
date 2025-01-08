@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import "./AdminPanel.css";
 import CreateLessons from "../CreateLessons/CreateLessons";
 import LessonsList from "../LessonsList/LessonsList";
 import { useLessons } from "../../contexts/LessonsContext";
+import "./AdminPanel.css";
 
 const AdminPanel = () => {
   const { lessons, setLessons } = useLessons();
-  const [videoPreview, setVideoPreview] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState(null);
+   // Состояние для превью файлов (видео и фото)
+  const [previews, setPreviews] = useState({ video: null, photo: null });
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,39 +18,36 @@ const AdminPanel = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const videoFile = data.video[0];
-    const photoFile = data.photo[0];
-
-    const videoUrl = URL.createObjectURL(videoFile);
-    const photoUrl = URL.createObjectURL(photoFile);
+    // Формируем объект с превью видео и фото
+    const files = ["video", "photo"].reduce((acc, key) => {
+      const file = data[key][0];
+      acc[key] = file ? URL.createObjectURL(file) : null;
+      return acc;
+    }, {});
 
     const newLesson = {
       title: data.title,
-      video: videoUrl,
-      photo: photoUrl,
+      video: files.video,
+      photo: files.photo,
       homework: data.homework,
       id: window.crypto.randomUUID().slice(0, 5),
     };
 
     setLessons([...lessons, newLesson]);
     reset();
-    setVideoPreview(null);
-    setPhotoPreview(null);
+    setPreviews({ video: null, photo: null });
   };
-
+  
+// Обработчик изменения файлов (для превью)
   const handleFileChange = (e) => {
     const { name, files } = e.target;
-    const file = files[0];
-
-    if (name === "video" && file) {
-      setVideoPreview(URL.createObjectURL(file));
-    }
-
-    if (name === "photo" && file) {
-      setPhotoPreview(URL.createObjectURL(file));
+    if (files[0]) {
+      setPreviews((prev) => ({
+        ...prev,
+        [name]: URL.createObjectURL(files[0]),
+      }));
     }
   };
 
@@ -64,14 +62,13 @@ const AdminPanel = () => {
         <button onClick={() => navigate("/")}>Назад</button>
         <CreateLessons
           onSubmit={onSubmit}
-          videoPreview={videoPreview}
-          photoPreview={photoPreview}
+          previews={previews}
           handleFileChange={handleFileChange}
           register={register}
           handleSubmit={handleSubmit}
           errors={errors}
         />
-        <h2>Уроки {[lessons.length]}</h2>
+        <h2>Уроки ({lessons.length})</h2>
         <LessonsList
           lessons={lessons}
           handleDeleteLesson={handleDeleteLesson}
