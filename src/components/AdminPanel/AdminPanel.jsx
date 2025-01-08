@@ -6,9 +6,9 @@ import LessonsList from "../LessonsList/LessonsList";
 import { useLessons } from "../../contexts/LessonsContext";
 import "./AdminPanel.css";
 
-const AdminPanel = () => {
+export default function AdminPanel() {
   const { lessons, setLessons } = useLessons();
-   // Состояние для превью файлов (видео и фото)
+  // Состояние для превью файлов (видео и фото)
   const [previews, setPreviews] = useState({ video: null, photo: null });
   const navigate = useNavigate();
 
@@ -39,8 +39,8 @@ const AdminPanel = () => {
     reset();
     setPreviews({ video: null, photo: null });
   };
-  
-// Обработчик изменения файлов (для превью)
+
+  // Обработчик изменения файлов (для превью)
   const handleFileChange = (e) => {
     const { name, files } = e.target;
     if (files[0]) {
@@ -76,6 +76,4 @@ const AdminPanel = () => {
       </div>
     </div>
   );
-};
-
-export default AdminPanel;
+}

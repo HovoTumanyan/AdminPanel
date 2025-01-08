@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
     <div className="container">
       <h1>Добро пожаловать на главную страницу</h1>
@@ -18,6 +18,4 @@ const HomePage = () => {
       </Link>
     </div>
   );
-};
-
-export default HomePage;
+}
